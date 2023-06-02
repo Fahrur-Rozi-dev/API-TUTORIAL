@@ -43,8 +43,12 @@ class PostController extends Controller
         $patch->update($request->all());
 
         return new PostDetailResource($patch->loadMissing('writter:id,Username'));
-
-
+    }
+    public function delete(Request $request ,$id)
+    {
+        $delete = Post::findOrfail($id);
+        $delete->delete();  
+        return response()->json($delete);
 
     }
 
